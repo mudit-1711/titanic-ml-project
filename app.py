@@ -8,11 +8,13 @@ st.title("Titanic Survival Prediction")
 
 pclass = st.number_input("Passenger Class", 1, 3)
 age = st.number_input("Age", 1, 100)
-fare = st.number_input("Fare", 0)
+fare = st.number_input("Fare", 0) 
+sex = st.selectbox("Gender", ["male", "female"])
+sex = 1 if sex == "male" else 0
 
 if st.button("Predict"):
 
-    data = np.array([[pclass, age, fare]])
+    data = np.array([[pclass, age, fare,sex]])
 
     prediction = model.predict(data)
 

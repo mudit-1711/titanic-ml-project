@@ -5,11 +5,14 @@ import pickle
 
 df = pd.read_csv("data/train.csv")
 
-X = df[["Pclass", "Age", "Fare"]]
-
+X = df[["Pclass", "Age", "Fare","Sex"]]
+X["Sex"] = X["Sex"].map({
+    "male": 1,
+    "female": 0
+})
 y = df["Survived"]
-
-X = X.fillna(X.mean())
+X["Age"] = X["Age"].fillna(X["Age"].mean())
+X["Fare"] = X["Fare"].fillna(X["Fare"].mean())
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
